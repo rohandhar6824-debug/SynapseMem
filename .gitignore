@@ -1,9 +1,32 @@
+# Bytecode & Caches
 __pycache__/
 *.py[cod]
+.pytest_cache/
+
+# Databases & SQLite WAL/Journal files
 *.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite3
+
+# Virtual Environments
 .venv/
 venv/
+env/
+
+# Packaging & Builds
 dist/
 build/
 *.egg-info/
-.pytest_cache/
+*.egg
+
+# Secrets & Local Config
+.env
+.env.*
+
+# Editor & OS Artifacts
+.vscode/
+*.swp
+Thumbs.db
+.DS_Store
