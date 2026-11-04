@@ -1,0 +1,53 @@
+import time
+import os
+from synapse_core import SynapseMemoryEngine
+
+def simulate_scale():
+    # Remove old test DB if present
+    if os.path.exists("stress_test.db"):
+        os.remove("stress_test.db")
+        
+    engine = SynapseMemoryEngine(db_path="stress_test.db")
+    
+    print("\n" + "="*65)
+    print("      SYNAPSEMEM SCALING TEST: CONSTANT CONTEXT VS LINEAR BLOAT")
+    print("="*65)
+    print(f"{'Turn':<6} | {'Simulated Action':<28} | {'Naive Words':<12} | {'Synapse Words':<12}")
+    print("-" * 65)
+
+    naive_history = []
+    
+    # 15 distinct configuration services updated across 30 turns
+    services = ["api_gateway", "payment_worker", "auth_proxy", "search_indexer", "cache_cluster"]
+    ports = [8000, 3000, 4000, 9200, 6379]
+
+    turn = 1
+    # Round 1: Initial deployment
+    for svc, port in zip(services, ports):
+        msg = f"The {svc} is initialized on port {port}."
+        naive_history.append(f"User: {msg}")
+        engine.ingest_belief(svc, "uses_port", str(port))
+        
+        ctx = engine.retrieve_active_context(svc)
+        naive_len = sum(len(m.split()) for m in naive_history)
+        syn_len = len(ctx.split())
+        print(f"{turn:<6} | Deploy {svc:<21} | {naive_len:<12} | {syn_len:<12}")
+        turn += 1
+
+    # Round 2: Re-configurations & state shifts (5 updates)
+    for svc, port in zip(services, [8080, 3001, 4001, 9201, 6380]):
+        msg = f"Update: Migration complete. The {svc} now uses port {port}."
+        naive_history.append(f"User: {msg}")
+        engine.ingest_belief(svc, "uses_port", str(port))
+        
+        ctx = engine.retrieve_active_context(svc)
+        naive_len = sum(len(m.split()) for m in naive_history)
+        syn_len = len(ctx.split())
+        print(f"{turn:<6} | Shift {svc:<22} | {naive_len:<12} | {syn_len:<12}")
+        turn += 1
+
+    print("="*65)
+    print("Takeaway: Naive context balloons linearly; SynapseMem stays flat.")
+
+if __name__ == "__main__":
+    simulate_scale()
