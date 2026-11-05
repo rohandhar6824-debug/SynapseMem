@@ -12,12 +12,9 @@
 
 📄 **Preprint:** [Read the Research Paper (PDF)](paper/SynapseMem_Preprint.pdf)
 
-- [Architecture](#-architecture)
-- [Key Innovations](#-key-innovations)
-- [Benchmarks](#-benchmark-results)
-- [Quickstart](#-quickstart)
-- [Ollama Integration](#-local-agent-integration-ollama)
-- [Citation](#-citation)
+<br/>
+
+[Architecture](#-architecture) • [Key Innovations](#-key-innovations) • [Benchmarks](#-benchmark-results) • [Quickstart](#-quickstart) • [Ollama Integration](#-local-agent-integration-ollama) • [Citation](#-citation)
 
 </div>
 
