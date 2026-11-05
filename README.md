@@ -73,16 +73,14 @@ User / Sensor Input
 
 ## 📊 Benchmark Results
 
-Evaluated locally against `qwen2.5:3b` on CPU via Ollama across sequential state-inversion tasks:
+Evaluated locally against `qwen2.5:3b` via Ollama across 3-round sequential state-inversion tasks:
 
-| Metric | Naive History Baseline | SynapseMem (Ours) | Delta |
+| Metric | Naive History Baseline | SynapseMem (`v0.2.0`) | Delta |
 | :--- | :--- | :--- | :--- |
-| **State-Inversion Accuracy** | 100%* | **100%** | Parity |
-| **Injected Context Footprint** | 455 words | **234 words** | **-48.6%** |
-| **Average Query Latency (CPU)** | 0.36 s | **0.15 s** | **~58% Faster** |
+| **State-Inversion Accuracy** | 100%* (5/5) | **100% (5/5)** | Parity |
+| **Injected Context Footprint** | 682 words | **267 words** | **-60.9%** |
+| **Average Query Latency** | 1.31 s | **0.16 s** | **8.2x Faster (-87.8%)** |
 | **Context Scaling Curve** | $O(N)$ Linear Bloat | **$O(1)$ Constant Ceiling** | **Bounded** |
-
-*\*Note: Baseline accuracy collapses rapidly as conversation length exceeds the context boundary, while SynapseMem maintains a constant ~25-word context footprint per entity inquiry.*
 
 ---
 
