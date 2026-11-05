@@ -10,7 +10,14 @@
 [![Hardware](https://img.shields.io/badge/Hardware-Edge%20%2F%20CPU%20Friendly-purple)](#-benchmark-results)
 [![Ollama Compatible](https://img.shields.io/badge/Ollama-Native-black)](https://ollama.ai)
 
-[Architecture](#-architecture) • [Key Innovations](#-key-innovations) • [Benchmarks](#-benchmark-results) • [Quickstart](#-quickstart) • [Ollama Integration](#-local-agent-integration-ollama) • [Citation](#-citation)
+📄 **Preprint:** [Read the Research Paper (PDF)](paper/SynapseMem_Preprint.pdf)
+
+- [Architecture](#-architecture)
+- [Key Innovations](#-key-innovations)
+- [Benchmarks](#-benchmark-results)
+- [Quickstart](#-quickstart)
+- [Ollama Integration](#-local-agent-integration-ollama)
+- [Citation](#-citation)
 
 </div>
 
@@ -19,8 +26,8 @@
 ## 🔬 The Core Problem: Chronological Amnesia in RAG
 
 When an autonomous AI agent operates over days, weeks, or months, environment states drift constantly:
-* **Day 1:** `"The production database runs on port 5432."`
-* **Day 5:** `"We migrated the production database to port 6432."`
+- **Day 1:** `"The production database runs on port 5432."`
+- **Day 5:** `"We migrated the production database to port 6432."`
 
 Standard **Vector RAG** (Retrieval-Augmented Generation) converts text into static embeddings and retrieves chunks based purely on semantic similarity. Because both statements discuss database ports, standard cosine similarity retrieves **both** chunks with near-identical scores. 
 
